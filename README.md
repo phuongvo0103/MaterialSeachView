@@ -86,34 +86,35 @@
 Thêm chúng vào object:      
         searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions)); 		
        
- Style của nó!      <style name="MaterialSearchViewStyle">
-        <!-- Background for the search bar -->
-        <item name="searchBackground">@color/theme_primary</item>
+ Style của nó!     
+  <style name="MaterialSearchViewStyle">
+         <!-- Background for the search bar -->
+         <item name="searchBackground">@color/theme_primary</item>
 
-        <!-- Change voice icon -->
-        <item name="searchVoiceIcon">@drawable/ic_action_voice_search_inverted</item>
+         <!-- Change voice icon -->
+         <item name="searchVoiceIcon">@drawable/ic_action_voice_search_inverted</item>
 
-        <!-- Change clear text icon -->
-        <item name="searchCloseIcon">@drawable/ic_action_navigation_close_inverted</item>
+         <!-- Change clear text icon -->
+         <item name="searchCloseIcon">@drawable/ic_action_navigation_close_inverted</item>
 
-        <!-- Change up icon -->
-        <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back_inverted</item>
+         <!-- Change up icon -->
+         <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back_inverted</item>
 
-        <!-- Change icon for the suggestions -->
-        <item name="searchSuggestionIcon">@drawable/ic_suggestion</item>
+         <!-- Change icon for the suggestions -->
+         <item name="searchSuggestionIcon">@drawable/ic_suggestion</item>
 
-        <!-- Change background for the suggestions list view -->
-        <item name="searchSuggestionBackground">@android:color/white</item>
+         <!-- Change background for the suggestions list view -->
+         <item name="searchSuggestionBackground">@android:color/white</item>
 
-        <!-- Change text color for edit text. This will also be the color of the cursor -->
-        <item name="android:textColor">@color/theme_primary_text_inverted</item>
+         <!-- Change text color for edit text. This will also be the color of the cursor -->
+         <item name="android:textColor">@color/theme_primary_text_inverted</item>
 
-        <!-- Change hint text color for edit text -->
-        <item name="android:textColorHint">@color/theme_secondary_text_inverted</item>
+         <!-- Change hint text color for edit text -->
+         <item name="android:textColorHint">@color/theme_secondary_text_inverted</item>
 
-        <!-- Hint for edit text -->
-        <item name="android:hint">@string/search_hint</item>
-    </style>
+         <!-- Hint for edit text -->
+         <item name="android:hint">@string/search_hint</item>
+     </style>
     
  tùy chỉnh cursor  tạo trong drawable:      
  
@@ -126,56 +127,56 @@ Thêm chúng vào object:
         searchView.setCursorDrawable(R.drawable.custom_cursor); 		 
 
 Sử dụng AppBarLayout?  It is a little bit tricky but can be achieved using this:      
- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       android:id="@+id/container"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
-    <!— Irrelevant stuff —>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/appbarlayout"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+       <!— Irrelevant stuff —>
+       <android.support.v4.view.ViewPager
+           android:id="@+id/viewpager"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_below="@+id/appbarlayout"
+           app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <!— Must be last for right layering display —>
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbarlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/search_layover_bg">
+       <!— Must be last for right layering display —>
+       <android.support.design.widget.AppBarLayout
+           android:id="@+id/appbarlayout"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@color/search_layover_bg">
 
-        <FrameLayout
-            android:id="@+id/toolbar_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+           <FrameLayout
+               android:id="@+id/toolbar_container"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/theme_primary" />
+               <android.support.v7.widget.Toolbar
+                   android:id="@+id/toolbar"
+                   android:layout_width="match_parent"
+                   android:layout_height="?attr/actionBarSize"
+                   android:background="@color/theme_primary" />
 
-            <com.miguelcatalan.materialsearchview.MaterialSearchView
-                android:id="@+id/search_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
-        </FrameLayout>
+               <com.miguelcatalan.materialsearchview.MaterialSearchView
+                   android:id="@+id/search_view"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:visibility="gone" />
+           </FrameLayout>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/theme_primary"
-            app:tabGravity="fill"
-            app:tabMode="fixed" />
+           <android.support.design.widget.TabLayout
+               android:id="@+id/tabs"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/theme_primary"
+               app:tabGravity="fill"
+               app:tabMode="fixed" />
 
-    </android.support.design.widget.AppBarLayout>
+       </android.support.design.widget.AppBarLayout>
 
-</RelativeLayout>
+   </RelativeLayout>
 Bonus 
 Close on backpressed:      
         @Override     
