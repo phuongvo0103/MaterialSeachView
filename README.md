@@ -1,14 +1,27 @@
-# MaterialSeachView
- MaterialSearchView là một thư viện rất hay về SeachView .Làm việc từ API Android 14 (ICS) trở lên. 
-Usage
+# MaterialSearchView
+Cute library to implement SearchView in a Material Design Approach. *Works from Android API 14 (ICS) and above*.
 
-Add the dependencies to your gradle file:
+![sample](https://raw.githubusercontent.com/MiguelCatalan/MaterialSearchView/master/art/voice.gif) ![sample](https://raw.githubusercontent.com/MiguelCatalan/MaterialSearchView/master/art/default.gif)
 
-    dependencies {
-        compile 'com.miguelcatalan:materialsearchview:1.4.0'
-    }
-Add MaterialSearchView to your layout file along with the Toolbar (Add this block at the bottom of your layout, in order to display it over the rest of the view):
+<a href="https://play.google.com/store/apps/details?id=com.miguelcatalan.materialsearchview.sample">
+  <img alt="Get it on Google Play"
+       src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
+</a>
 
+#Native version
+Maybe it would be useful to take a look into the new official approach
+http://www.materialdoc.com/search-filter/
+
+# Usage
+**Add the dependencies to your gradle file:**
+```javascript
+	dependencies {
+    	compile 'com.miguelcatalan:materialsearchview:1.4.0'
+	}
+```
+**Add MaterialSearchView to your layout file along with the Toolbar** *(Add this block at the bottom of your layout, in order to display it over the rest of the view)*:
+
+```xml
     <!— Must be last for right layering display —>
     <FrameLayout
         android:id="@+id/toolbar_container"
@@ -26,18 +39,21 @@ Add MaterialSearchView to your layout file along with the Toolbar (Add this bloc
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </FrameLayout>
-Add the search item into the menu file:
+```
 
-    <item
+**Add the search item into the menu file:**
+```xml
+	<item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_action_action_search"
         android:orderInCategory="100"
         android:title="@string/abc_search_hint"
         app:showAsAction="always" />
-Add define it in the onCreateOptionsMenu:
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+```
+**Add define it in the *onCreateOptionsMenu*:**
+```java
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem item = menu.findItem(R.id.action_search);
@@ -45,10 +61,11 @@ Add define it in the onCreateOptionsMenu:
 
         return true;
     }
-Set the listeners:
-
-    MaterialSearchView searchView = (MaterialSearchView) findViewById(R.id.search_view);
-    searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+```
+**Set the listeners:**
+```java
+	MaterialSearchView searchView = (MaterialSearchView) findViewById(R.id.search_view);
+	searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //Do some magic
@@ -61,7 +78,7 @@ Set the listeners:
                 return false;
             }
         });
-
+        
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
@@ -73,13 +90,14 @@ Set the listeners:
                 //Do some magic
             }
         });
-Use VoiceSearch
-
-Allow/Disable it in the code:
-
-    searchView.setVoiceSearch(true); //or false
-Handle the response:
-
+```
+# Use VoiceSearch
+**Allow/Disable it in the code:**
+```java
+	searchView.setVoiceSearch(true); //or false
+```
+**Handle the response:**
+```java
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
@@ -95,10 +113,10 @@ Handle the response:
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-Add suggestions
-
-Define them in the resources as a string-array:
-
+```
+# Add suggestions
+**Define them in the resources as a *string-array*:**
+```xml
     <string-array name="query_suggestions">
         <item>Android</item>
         <item>iOS</item>
@@ -106,11 +124,13 @@ Define them in the resources as a string-array:
         <item>Ruby</item>
         <item>JavaScript</item>
     </string-array>
-Add them to the object:
-
-    searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
-Style it!
-
+```
+**Add them to the object:**	
+```java
+	searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
+```
+# Style it!
+```xml
     <style name="MaterialSearchViewStyle">
         <!-- Background for the search bar -->
         <item name="searchBackground">@color/theme_primary</item>
@@ -123,7 +143,7 @@ Style it!
 
         <!-- Change up icon -->
         <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back_inverted</item>
-
+        
         <!-- Change icon for the suggestions -->
         <item name="searchSuggestionIcon">@drawable/ic_suggestion</item>
 
@@ -139,22 +159,24 @@ Style it!
         <!-- Hint for edit text -->
         <item name="android:hint">@string/search_hint</item>
     </style>
-Custom cursor
-
-Create the drawable:
-
+```    
+#Custom cursor
+**Create the drawable:**
+```xml	
     <shape xmlns:android="http://schemas.android.com/apk/res/android">
-        <size android:width="2dp" />
-        <solid android:color="@color/theme_primary" />
+    	<size android:width="2dp" />
+    	<solid android:color="@color/theme_primary" />
     </shape>
-And add it to the object:
+```	
+**And add it to the object:**
+```java
+	searchView.setCursorDrawable(R.drawable.custom_cursor);
+```    
 
-    searchView.setCursorDrawable(R.drawable.custom_cursor);
-Using AppBarLayout?
-
+# Using AppBarLayout?
 It is a little bit tricky but can be achieved using this:
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+```xml
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -204,10 +226,10 @@ It is a little bit tricky but can be achieved using this:
     </android.support.design.widget.AppBarLayout>
 
 </RelativeLayout>
-Bonus
-
-Close on backpressed:
-
+```  
+# Bonus
+**Close on backpressed:**
+```java
     @Override
     public void onBackPressed() {
         if (searchView.isSearchOpen()) {
@@ -216,3 +238,23 @@ Close on backpressed:
             super.onBackPressed();
         }
     }
+```
+# Help me
+Pull requests are more than welcome, help me and others improve this awesome library.
+
+The code is based in the Krishnakapil original concept.
+
+# License
+	Copyright 2015 Miguel Catalan Bañuls
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
